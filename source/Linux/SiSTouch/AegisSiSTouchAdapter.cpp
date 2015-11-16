@@ -465,7 +465,8 @@ AegisMultiSiSTouchAdapter::isSiSFWFile(int* buf, int buf_length)
 
         unsigned int slaveAddr = getSlaveAddr();
 
-        if(multichip_Selective_ChipId == NON_MULTI_DEVICE_FLAG || ((slaveAddr > 0) && (multichip_Selective_ChipId != slaveAddr)) || ((slaveAddr <= 0) && (multichip_Selective_ChipId != MASTER_DEVICE_FLAG) && (multichip_Selective_ChipId != BRIDGE_DEVICE_FLAG) ))
+		//if(multichip_Selective_ChipId == NON_MULTI_DEVICE_FLAG || ((slaveAddr > 0) && (multichip_Selective_ChipId != slaveAddr)) || ((slaveAddr <= 0) && (multichip_Selective_ChipId != MASTER_DEVICE_FLAG) && (multichip_Selective_ChipId != BRIDGE_DEVICE_FLAG) ))
+        if( ((slaveAddr > 0) && (multichip_Selective_ChipId != slaveAddr)) ) // remove master == 0x00
         {
             printf("interface not match. interface : %02x, multi_select : %02x\n", interfaceId, multichip_Selective_ChipId);
             ret = 0;
